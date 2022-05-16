@@ -127,7 +127,7 @@ const Login = ({ className, staticContext, ...rest }) => {
                             />
                         </FormControl>
 
-                        <Button className={classes.loginBtn}>
+                        <Button className={classes.loginBtn} href='/admin/customers'>
                             Log In
                         </Button>
                     </form>
