@@ -3,7 +3,8 @@ import { Route, Switch } from 'react-router-dom';
 
 import Customers from './components/Admin/Customers';
 import Events from './components/Admin/Events';
-import Login from './components/Login/Login'
+import Home from './components/Home/Home';
+import Login from './components/Login/Login';
 import LoginAdmin from './components/Login/LoginAdmin';
 import Organizers from './components/Admin/Organizers';
 
@@ -13,6 +14,7 @@ const App = () => {
   return (
     <div>
       <Switch>
+        <Route exact path='/' component={Home} />
         <Route exact path='/login' component={Login} />
         <Route exact path='/loginadmin' component={LoginAdmin} />
         <Route exact path='/admin/customers' component={Customers} />
