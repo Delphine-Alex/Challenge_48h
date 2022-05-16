@@ -1,0 +1,11 @@
+@import url("https://cdn.syncfusion.com/ej2/material.css");
+
+:root {
+    /* ----- GENERAL ------- */
+    --blue-color: #113D78;
+    --white-color: #FFFFFF;
+    --black-color: #000000;
+
+    /* ----- BUTTON COLORS ------- */
+    --hover-btn: #113e78ec;
+}
