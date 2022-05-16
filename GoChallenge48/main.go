@@ -24,6 +24,8 @@ func main() {
 		// Admin
 		publicGroup.GET("/admin", public.GetAdmin)
 
+		// Customers
+		publicGroup.GET("/users", public.GetCustomers)
 	}
 
 
