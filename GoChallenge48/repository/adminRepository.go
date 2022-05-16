@@ -2,6 +2,7 @@ package repository
 
 import (
 	"GoChallenge48/Go/models"
+	"fmt"
 )
 
 // GetNewsletters get all newsletters from db
@@ -25,6 +26,7 @@ func GetAdmin() []models.Admin {
 			panic(err)
 		}
 
+		fmt.Println(username)
 		administrator = append(administrator, models.Admin{UUID: uuid, Username: username, Password: password})
 	}
 
