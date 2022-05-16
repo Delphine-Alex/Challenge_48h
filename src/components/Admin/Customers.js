@@ -213,7 +213,7 @@ const Customers = ({ className, staticContext, ...rest }) => {
                                     // }}
                                     />
                                     <Button className={classes.button} href="/admin/newcustomer">
-                                        Create a new customer
+                                        Create a new user
                                     </Button>
                                 </div>
 

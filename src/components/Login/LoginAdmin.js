@@ -88,7 +88,7 @@ const LoginAdmin = ({ className, staticContext, ...rest }) => {
         <div className={classes.root}>
             <Card className={clsx(classes.card, className)} elevation={2} {...rest} >
                 <h1 className={classes.title}>Paris Ynov Campus</h1>
-                <h2 className={classes.subtitle}>Challenge 48H</h2>
+                <h2 className={classes.subtitle}>Admin Account</h2>
                 <Container maxWidth="sm" style={{ padding: 0 }}>
 
                     <form className={classes.cardContent} autoComplete="off">
