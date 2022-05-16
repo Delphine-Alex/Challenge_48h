@@ -81,7 +81,7 @@ const Navbar = ({ onMobileClose, openMobile }) => {
             <Box p={2} m={2} >
                 <List>
                     <NavItem
-                        href='/'
+                        href='/admin'
                         key='Logout'
                         title='Logout'
                         icon={LogoutIcon}

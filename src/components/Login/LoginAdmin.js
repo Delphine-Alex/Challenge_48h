@@ -70,7 +70,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const Login = ({ className, staticContext, ...rest }) => {
+const LoginAdmin = ({ className, staticContext, ...rest }) => {
     const classes = useStyles();
     const [login, setLogin] = useState('');
     const [password, setPassword] = useState('');
@@ -137,4 +137,4 @@ const Login = ({ className, staticContext, ...rest }) => {
     )
 }
 
-export default Login;
+export default LoginAdmin;
