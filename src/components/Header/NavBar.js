@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 
 import { Box, Drawer, Hidden, List, Typography, makeStyles } from '@material-ui/core';
 
+import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+import GroupIcon from '@mui/icons-material/Group';
 import PersonIcon from '@mui/icons-material/Person';
 import LogoutIcon from '@mui/icons-material/Logout';
 
@@ -18,8 +20,13 @@ const items = [
     {
 
         href: '/admin/organizers',
-        icon: PersonIcon,
+        icon: GroupIcon,
         title: 'Organizer list',
+    },
+    {
+        href: '/admin/events',
+        icon: CalendarMonthIcon,
+        title: 'Event list',
     }
 ];
 
