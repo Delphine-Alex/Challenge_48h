@@ -35,10 +35,6 @@ const useStyles = makeStyles((theme) => ({
         color: 'var(--blue-color)',
         fontSize: '1.5em',
     },
-    subtitle: {
-        color: 'var(--blue-color)',
-        fontSize: '1.25em',
-    },
     cardContent: {
         display: 'flex',
         flexDirection: 'column',
@@ -66,7 +62,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const LoginAdmin = ({ className, staticContext, ...rest }) => {
+const Login = ({ className, staticContext, ...rest }) => {
     const classes = useStyles();
     const [login, setLogin] = useState('');
     const [password, setPassword] = useState('');
@@ -84,7 +80,6 @@ const LoginAdmin = ({ className, staticContext, ...rest }) => {
         <div className={classes.root}>
             <Card className={clsx(classes.card, className)} elevation={2} {...rest} >
                 <h1 className={classes.title}>Paris Ynov Campus</h1>
-                <h2 className={classes.subtitle}>Admin Account</h2>
                 <Container maxWidth="sm" style={{ padding: 0 }}>
 
                     <form className={classes.cardContent} autoComplete="off">
@@ -123,7 +118,7 @@ const LoginAdmin = ({ className, staticContext, ...rest }) => {
                             />
                         </FormControl>
 
-                        <Button className={classes.loginBtn} href='/admin/customers'>
+                        <Button className={classes.loginBtn} href='/'>
                             Log In
                         </Button>
                     </form>
@@ -133,4 +128,4 @@ const LoginAdmin = ({ className, staticContext, ...rest }) => {
     )
 }
 
-export default LoginAdmin;
+export default Login;
