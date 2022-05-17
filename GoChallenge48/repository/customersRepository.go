@@ -75,10 +75,10 @@ func GetCustomerByEmail(mail string) []models.User {
 	var username string
 	var password string
 	var email string
-	var firstname string
-	var lastname string
+	var firstname sql.NullString
+	var lastname sql.NullString
 
-	var Customers []models.User
+	var users []models.User
 
 	for rows.Next() {
 		err = rows.Scan(&uuid, &username, &password, &email, &firstname, &lastname)
@@ -87,11 +87,12 @@ func GetCustomerByEmail(mail string) []models.User {
 			panic(err)
 		}
 
-		Customers = append(Customers, models.User{UUID: uuid, Username: username, Password: password, Email: email, FirstName: firstname, LastName: lastname})
+		users = append(users, models.User{UUID: uuid, Username: username, Password: password, Email: email, FirstName: firstname.String, LastName: lastname.String})
 	}
 
-	return Customers
+	return users
 }
+
 
 // GetUserByUsername return a user from db using username
 func GetCustomerByUsername(name string) []models.User {
@@ -124,11 +125,11 @@ func GetCustomerByUsername(name string) []models.User {
 }
 
 // PostUser create a new user in db
-func PostUser(newUser models.CreateUser) {
+func PostCustomer(newUser models.PostUser) {
 	// dynamic
-	insertDynStmt := `insert into "customers"("username", "password", "email") values($1, $2, $3)`
+	insertDynStmt := `insert into "customers"("firstname","lastname","username", "password", "email") values($1, $2, $3, $4, $5)`
 
-	_, err := currentDB.Exec(insertDynStmt, newUser.Username, newUser.Password, newUser.Email)
+	_, err := currentDB.Exec(insertDynStmt,newUser.FirstName ,newUser.LastName, newUser.Username, newUser.Password, newUser.Email)
 	if err != nil {
 		panic(err)
 	}

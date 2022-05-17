@@ -45,24 +45,24 @@ func isCustomerExistById(uuid string) bool {
 // PostUser handle /user for creating a new user (POST) - PUBLIC
 func PostCustomer(c *gin.Context) {
 	// Validate input
-	var input models.CreateUser
+	var input models.PostUser
 	if err := c.ShouldBindJSON(&input); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
 
-	if len(repository.GetCustomerByEmail(input.Email)) != 0 {
-		c.JSON(http.StatusConflict, gin.H{"error": "Customer with this mail already exist"})
-		return
-	}
+	// if len(repository.GetCustomerByEmail(input.Email)) != 0 {
+	// 	c.JSON(http.StatusConflict, gin.H{"error": "Customer with this mail already exist"})
+	// 	return
+	// }
 
-	if len(repository.GetCustomerByUsername(input.Username)) != 0 {
-		c.JSON(http.StatusConflict, gin.H{"error": "This username is already taken by another user"})
-		return
-	}
+	// if len(repository.GetCustomerByUsername(input.Username)) != 0 {
+	// 	c.JSON(http.StatusConflict, gin.H{"error": "This username is already taken by another user"})
+	// 	return
+	// }
 
 	// Create Wishlist to create a user
-	repository.PostUser(input)
+	repository.PostCustomer(input)
 
 	//repository.PostWishlist(repository.GetCustomerByEmail(input.Email)[0].UUID_wishlist)
 
