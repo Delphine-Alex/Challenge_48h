@@ -43,3 +43,44 @@ func GetEvents() []models.Jointure {
 
 	return events
 }
+
+// GetUserByUsername return a user from db using username
+func GetEventByName(name string) []models.Event {
+	rows, err := currentDB.Query(`SELECT * FROM "event" WHERE username = $1`, name)
+
+	if err != nil {
+		panic(err)
+	}
+
+	var uuid string
+	var title string
+	var _type string
+	var location string
+	var start string
+	var end string
+
+	var events []models.Event
+
+	for rows.Next() {
+		err = rows.Scan(&uuid, &title, &_type, &location, &start, &end)
+
+		if err != nil {
+			panic(err)
+		}
+
+		events = append(events, models.Event{UUID: uuid, Title: title, Type: _type, Location: location, Start: start, End: end})
+	}
+
+	return events
+}
+
+// PostUser create a new user in db
+func PostEvent(newUser models.CreateEvent) {
+	// dynamic
+	insertDynStmt := `insert into "event"("username", "password", "email") values($1, $2, $3)`
+
+	_, err := currentDB.Exec(insertDynStmt, newUser.Title, newUser.Type, newUser.Location, newUser.Start, newUser.End)
+	if err != nil {
+		panic(err)
+	}
+}
