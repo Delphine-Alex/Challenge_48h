@@ -1,8 +1,8 @@
 package repository
 
 import (
-	"database/sql"
 	"GoChallenge48/Go/models"
+	"database/sql"
 )
 
 // GetUsers return a user from db
@@ -24,7 +24,7 @@ func GetCustomers() []models.User {
 	var users []models.User
 
 	for rows.Next() {
-		err = rows.Scan(&uuid, &username, &password, &email, &firstname, &lastname)
+		err = rows.Scan(&uuid, &firstname, &lastname, &email, &username, &password)
 
 		if err != nil {
 			panic(err)

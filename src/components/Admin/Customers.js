@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
-// import React, { useState, useEffect } from 'react';
-// import axios from 'axios';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import clsx from 'clsx';
 
 import Headers from '../Header/Header';
@@ -9,10 +8,10 @@ import {
     Card,
     Divider,
     Grid,
-    // InputAdornment,
+    InputAdornment,
     Paper,
     Table,
-    // TableBody,
+    TableBody,
     TableCell,
     TableContainer,
     TableHead,
@@ -22,7 +21,7 @@ import {
     Typography,
 } from '@material-ui/core';
 
-// import SearchIcon from '@material-ui/icons/Search';
+import SearchIcon from '@material-ui/icons/Search';
 
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -130,23 +129,23 @@ const useStyles = makeStyles((theme) => ({
 const Customers = ({ className, staticContext, ...rest }) => {
     const classes = useStyles();
     const [page, setPage] = useState(0);
-    // const [users, setUsers] = useState([]);
+    const [users, setUsers] = useState([]);
 
-    // const [searchTerm, setSearchTerm] = useState('');
+    const [searchTerm, setSearchTerm] = useState('');
     const [rowsPerPage, setRowsPerPage] = useState(10);
 
-    // useEffect(() => {
-    //     const getDatas = async () => {
-    //         try {
-    //             const result = await axios.get('')
-    //             setUsers(result.data);
-    //             console.log(result.data);
-    //         } catch (err) {
-    //             console.log(err)
-    //         }
-    //     };
-    //     getDatas();
-    // }, []);
+    useEffect(() => {
+        const getDatas = async () => {
+            try {
+                const result = await axios.get('http://localhost:8080/customers')
+                setUsers(result.data);
+                console.log(result.data);
+            } catch (err) {
+                console.log(err)
+            }
+        };
+        getDatas();
+    }, []);
 
     const handleChangePage = (newPage) => {
         setPage(newPage);
@@ -163,29 +162,29 @@ const Customers = ({ className, staticContext, ...rest }) => {
         </TableCell>
     ));
 
-    // const mainContent = users
-    //     .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-    //     .filter(
-    //         (user) =>
-    //             !searchTerm ||
-    //             user.firstname.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    //             user.lastname.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    //             user.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    //             user.username.toLowerCase().includes(searchTerm.toLowerCase())
-    //     )
-    //     .map((user) => {
-    //         return (
-    //             <TableRow hover role="checkbox" tabIndex={-1} key={user.uuid} >
-    //                 <TableCell align="center">{user.firstname}</TableCell>
-    //                 <TableCell align="center">{user.lastname}</TableCell>
-    //                 <TableCell align="center">{user.email}</TableCell>
-    //                 <TableCell align="center">{user.username}</TableCell>
-    //                 <TableCell align="center">
-    //                     <Button className={classes.button} href={``}>View</Button>
-    //                 </TableCell>
-    //             </TableRow>
-    //         );
-    //     });
+    const mainContent = users
+        .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+        .filter(
+            (user) =>
+                !searchTerm ||
+                user.firstname.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                user.lastname.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                user.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                user.username.toLowerCase().includes(searchTerm.toLowerCase())
+        )
+        .map((user) => {
+            return (
+                <TableRow hover role="checkbox" tabIndex={-1} key={user.uuid} >
+                    <TableCell align="center">{user.firstname}</TableCell>
+                    <TableCell align="center">{user.lastname}</TableCell>
+                    <TableCell align="center">{user.email}</TableCell>
+                    <TableCell align="center">{user.username}</TableCell>
+                    <TableCell align="center">
+                        <Button className={classes.button} href={``}>View</Button>
+                    </TableCell>
+                </TableRow>
+            );
+        });
 
     return (
         <div className={classes.root}>
@@ -203,14 +202,14 @@ const Customers = ({ className, staticContext, ...rest }) => {
 
                                 <div className={classes.space}>
                                     <TextField className={classes.search} id="outlined-search" label="Search" type="search"
-                                    // onChange={(event) => { setSearchTerm(event.target.value) }}
-                                    // InputProps={{
-                                    //     endAdornment: (
-                                    //         <InputAdornment position="end">
-                                    //             <SearchIcon className={classes.searchIc} />
-                                    //         </InputAdornment>
-                                    //     ),
-                                    // }}
+                                        onChange={(event) => { setSearchTerm(event.target.value) }}
+                                        InputProps={{
+                                            endAdornment: (
+                                                <InputAdornment position="end">
+                                                    <SearchIcon className={classes.searchIc} />
+                                                </InputAdornment>
+                                            ),
+                                        }}
                                     />
                                     <Button className={classes.button} href="/admin/newcustomer">
                                         Create a new user
@@ -226,13 +225,13 @@ const Customers = ({ className, staticContext, ...rest }) => {
                                                 <TableHead>
                                                     <TableRow>{tableHeader}</TableRow>
                                                 </TableHead>
-                                                {/* <TableBody>{mainContent}</TableBody> */}
+                                                <TableBody>{mainContent}</TableBody>
                                             </Table>
                                         </TableContainer>
                                         <TablePagination
                                             rowsPerPageOptions={[10, 25, 100]}
                                             component="div"
-                                            // count={mainContent.length}
+                                            count={mainContent.length}
                                             rowsPerPage={rowsPerPage}
                                             page={page}
                                             onPageChange={handleChangePage}

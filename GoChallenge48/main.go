@@ -2,6 +2,7 @@ package main
 
 import (
 	"GoChallenge48/Go/public"
+
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 )
@@ -25,21 +26,17 @@ func main() {
 		publicGroup.GET("/admin", public.GetAdmin)
 
 		// Customers
-		publicGroup.GET("/customer", public.GetCustomers)
+		publicGroup.GET("/customers", public.GetCustomers)
 		publicGroup.GET("/user/:id", public.GetUserById)
 
 		//publicGroup.POST("/user", public.PostUser)
 
 		// Organizer
-		publicGroup.GET("/organizer", public.GetOrganizer)
+		publicGroup.GET("/organizers", public.GetOrganizer)
 
 		// Event
-		publicGroup.GET("/event", public.GetEvents)
+		publicGroup.GET("/events", public.GetEvents)
 	}
-
-
-
 
 	router.Run()
 }
-
