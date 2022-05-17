@@ -37,7 +37,7 @@ func GetCustomers() []models.User {
 }
 
 // GetUserById return a unique user from db using id
-func GetUserById(id string) models.User {
+func GetCustomerById(id string) models.User {
 	rows, err := currentDB.Query(`SELECT * FROM "user" WHERE uuid = $1`, id)
 
 	if err != nil {

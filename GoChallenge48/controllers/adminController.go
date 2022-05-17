@@ -8,6 +8,6 @@ import (
 )
 
 // GetNewsletters handle /newsletters (GET)
-func GetNewsletters(c *gin.Context) {
+func GetAdmin(c *gin.Context) {
 	c.JSON(http.StatusOK, repository.GetAdmin())
 }
