@@ -7,7 +7,7 @@ type Event struct {
 	Location      string `json:"location"`
 	Start         string `json:"start"`
 	End           string `json:"end"`
-	UUID_wishlist string `json:"uuid_wishlist"`
+	UUID_organizator string `json:"uuid_organizator"`
 }
 
 type CreateEvent struct {
@@ -17,6 +17,7 @@ type CreateEvent struct {
 	Location      string `json:"location"`
 	Start         string `json:"start"`
 	End           string `json:"end"`
+	UUID_organizator string `json:"uuid_organizator"`
 }
 
 type PostEvent struct {
@@ -26,4 +27,5 @@ type PostEvent struct {
 	Location      string `json:"location"`
 	Start         string `json:"start"`
 	End           string `json:"end"`
+	UUID_organizator string `json:"uuid_organizator"`
 }

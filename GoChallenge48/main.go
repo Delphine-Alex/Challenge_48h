@@ -35,6 +35,7 @@ func main() {
 
 		// Event
 		publicGroup.GET("/events", public.GetEvents)
+		publicGroup.POST("/event", public.PostEvent)
 	}
 
 	router.Run()

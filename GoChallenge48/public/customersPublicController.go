@@ -13,7 +13,6 @@ func GetCustomers(c *gin.Context) {
 	c.JSON(http.StatusOK, repository.GetCustomers())
 }
 
-
 // GetUserById handle /user/id (GET) - PUBLIC
 func GetCustomerById(c *gin.Context) {
 	if !isCustomerExistById(c.Params.ByName("id")) {
