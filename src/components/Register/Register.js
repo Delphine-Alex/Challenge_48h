@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+// import { useHistory } from 'react-router-dom';
 // import axios from 'axios';
 import clsx from "clsx";
 
@@ -109,7 +109,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Register = ({ className, staticContext, ...rest }) => {
     const [customer, setCustomer] = useState({});
-    const history = useHistory();
+    // const history = useHistory();
     const classes = useStyles();
 
     // const submitCustomer = async (e) => {

@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+// import React, { useState } from 'react';
+import React from 'react';
 
 import { Button, TextField, Typography } from '@material-ui/core';
 
@@ -78,7 +79,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Home = (className, staticContext) => {
-    const [searchTerm, setSearchTerm] = useState('');
+    // const [searchTerm, setSearchTerm] = useState('');
     const classes = useStyles();
 
     return (
@@ -88,17 +89,17 @@ const Home = (className, staticContext) => {
 
             <div className={classes.container}>
                 <div className={classes.subcontainer}>
-                    <img src='../images/handsUp.png' />
+                    <img src='../images/handsUp.png' alt="" />
                     <Typography className={classes.title} gutterBottom variant="h4" component="h2">Join a group</Typography>
                     <Typography className={classes.subtitle} variant="subtitle1" gutterBottom component="p">Do what you love, meet others who love it, find your community. The rest is history!</Typography>
                 </div>
                 <div className={classes.subcontainer}>
-                    <img src='../images/joinGroup.png' />
+                    <img src='../images/joinGroup.png' alt="" />
                     <Typography className={classes.title} gutterBottom variant="h4" component="h2">Find a event</Typography>
                     <Typography className={classes.subtitle} variant="subtitle1" gutterBottom component="p">Events are happening on just about any topic you can think of, from online gaming and photography to yoga and hiking.</Typography>
                 </div>
                 <div className={classes.subcontainer}>
-                    <img src='../images/ticket.png' />
+                    <img src='../images/ticket.png' alt="" />
                     <Typography className={classes.title} gutterBottom variant="h4" component="h2">Start a group</Typography>
                     <Typography className={classes.subtitle} variant="subtitle1" gutterBottom component="p">You don’t have to be an expert to gather people together and explore shared interests.</Typography>
                 </div>
@@ -112,7 +113,7 @@ const Home = (className, staticContext) => {
 
             <div className={classes.titleContainer}>
                 <TextField className={classes.search} id="outlined-basic" label="Search a meetup" variant="outlined" type="search"
-                    onChange={(event) => { setSearchTerm(event.target.value) }}
+                // onChange={(event) => { setSearchTerm(event.target.value) }}
                 />
                 <Button className={classes.searchBtn}>Search</Button>
             </div>
