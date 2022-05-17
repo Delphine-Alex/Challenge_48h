@@ -25,15 +25,15 @@ func main() {
 		publicGroup.GET("/admin", public.GetAdmin)
 
 		// Customers
-		publicGroup.GET("/customer", public.GetCustomers)
+		publicGroup.GET("/customers", public.GetCustomers)
 		publicGroup.GET("/customer/:id", public.GetCustomerById)
 		publicGroup.POST("/customer", public.PostCustomer)
 
 		// Organizer
-		publicGroup.GET("/organizer", public.GetOrganizer)
+		publicGroup.GET("/organizers", public.GetOrganizer)
 
 		// Event
-		publicGroup.GET("/event", public.GetEvents)
+		publicGroup.GET("/events", public.GetEvents)
 	}
 
 

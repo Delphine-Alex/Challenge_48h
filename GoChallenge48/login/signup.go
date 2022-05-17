@@ -56,7 +56,7 @@ func loginPage(res http.ResponseWriter, req *http.Request) {
 	email := req.FormValue("email")
 	password := req.FormValue("password")
 
-	var databaseemail string
+	var databaseEmail string
 	var databasePassword string
 
 	err := db.QueryRow("SELECT email, password FROM users WHERE email=?", email).Scan(&databaseEmail, &databasePassword)

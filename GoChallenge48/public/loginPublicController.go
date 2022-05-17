@@ -9,33 +9,33 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func GetCustomers(c *gin.Context) {
-	c.JSON(http.StatusOK, repository.GetCustomers())
-}
+// func GetLogin(c *gin.Context) {
+// 	c.JSON(http.StatusOK, repository.GetLogin())
+// }
 
 
-// GetUserById handle /user/id (GET) - PUBLIC
-func GetCustomerById(c *gin.Context) {
-	if !isCustomerExistById(c.Params.ByName("id")) {
-		c.JSON(http.StatusNotFound, gin.H{"error": "User not found with this ID"})
-		return
-	}
+// // GetUserById handle /user/id (GET) - PUBLIC
+// func GetCustomerById(c *gin.Context) {
+// 	if !isCustomerExistById(c.Params.ByName("id")) {
+// 		c.JSON(http.StatusNotFound, gin.H{"error": "User not found with this ID"})
+// 		return
+// 	}
 
-	c.JSON(http.StatusOK, repository.GetCustomerById(c.Params.ByName("id")))
-}
+// 	c.JSON(http.StatusOK, repository.GetCustomerById(c.Params.ByName("id")))
+// }
 
-// isUserExistById return true if the user exist in the db
-func isCustomerExistById(uuid string) bool {
-	if len(uuid) != 36 {
-		return false
-	}
+// // isUserExistById return true if the user exist in the db
+// func isCustomerExistById(uuid string) bool {
+// 	if len(uuid) != 36 {
+// 		return false
+// 	}
 
-	if repository.GetCustomerById(uuid).UUID == "" {
-		return false
-	} else {
-		return true
-	}
-}
+// 	if repository.GetCustomerById(uuid).UUID == "" {
+// 		return false
+// 	} else {
+// 		return true
+// 	}
+// }
 
 
 ////////////////////////////
@@ -43,7 +43,7 @@ func isCustomerExistById(uuid string) bool {
 ///////////////////////////
 
 // PostUser handle /user for creating a new user (POST) - PUBLIC
-func PostCustomer(c *gin.Context) {
+func PostEmail(c *gin.Context) {
 	// Validate input
 	var input models.CreateUser
 	if err := c.ShouldBindJSON(&input); err != nil {
