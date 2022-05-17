@@ -49,17 +49,17 @@ func signupPage(res http.ResponseWriter, req *http.Request) {
 
 func loginPage(res http.ResponseWriter, req *http.Request) {
 	if req.Method != "POST" {
-		http.ServeFile(res, req, "login.html")
+		http.ServeFile(res, req, "src/components/Login/Login.js")
 		return
 	}
 
-	username := req.FormValue("username")
+	email := req.FormValue("email")
 	password := req.FormValue("password")
 
-	var databaseUsername string
+	var databaseemail string
 	var databasePassword string
 
-	err := db.QueryRow("SELECT username, password FROM users WHERE username=?", username).Scan(&databaseUsername, &databasePassword)
+	err := db.QueryRow("SELECT email, password FROM users WHERE email=?", email).Scan(&databaseEmail, &databasePassword)
 
 	if err != nil {
 		http.Redirect(res, req, "/login", 301)
@@ -72,7 +72,7 @@ func loginPage(res http.ResponseWriter, req *http.Request) {
 		return
 	}
 
-	res.Write([]byte("Hello" + databaseUsername))
+	res.Write([]byte("Hello" + databaseEmail))
 
 }
 

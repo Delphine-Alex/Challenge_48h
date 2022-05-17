@@ -38,7 +38,7 @@ func GetCustomers() []models.User {
 
 // GetUserById return a unique user from db using id
 func GetCustomerById(id string) models.User {
-	rows, err := currentDB.Query(`SELECT * FROM "user" WHERE uuid = $1`, id)
+	rows, err := currentDB.Query(`SELECT * FROM "customers" WHERE uuid = $1`, id)
 
 	if err != nil {
 		panic(err)
@@ -70,7 +70,7 @@ func GetCustomerById(id string) models.User {
 
 // GetUserByEmail return a user from db using email
 func GetCustomerByEmail(mail string) []models.User {
-	rows, err := currentDB.Query(`SELECT * FROM "customer" WHERE email = $1`, mail)
+	rows, err := currentDB.Query(`SELECT * FROM "customers" WHERE email = $1`, mail)
 
 	if err != nil {
 		panic(err)
@@ -100,7 +100,7 @@ func GetCustomerByEmail(mail string) []models.User {
 
 // GetUserByUsername return a user from db using username
 func GetCustomerByUsername(name string) []models.User {
-	rows, err := currentDB.Query(`SELECT * FROM "customer" WHERE username = $1`, name)
+	rows, err := currentDB.Query(`SELECT * FROM "customers" WHERE username = $1`, name)
 
 	if err != nil {
 		panic(err)
@@ -131,7 +131,7 @@ func GetCustomerByUsername(name string) []models.User {
 // PostUser create a new user in db
 func PostUser(newUser models.CreateUser) {
 	// dynamic
-	insertDynStmt := `insert into "customer"("username", "password", "email") values($1, $2, $3)`
+	insertDynStmt := `insert into "customers"("username", "password", "email") values($1, $2, $3)`
 
 	_, err := currentDB.Exec(insertDynStmt, newUser.Username, newUser.Password, newUser.Email)
 	if err != nil {
