@@ -214,7 +214,7 @@ const Events = ({ className, staticContext, ...rest }) => {
                                     //     ),
                                     // }}
                                     />
-                                    <Button className={classes.button} href="/admin/newcustomer">
+                                    <Button className={classes.button} href="/admin/newevent">
                                         Create a new event
                                     </Button>
                                 </div>
@@ -244,7 +244,6 @@ const Events = ({ className, staticContext, ...rest }) => {
                                 </Grid>
                             </Card>
                         </div>
-
                     </div>
                 </div>
             </div>

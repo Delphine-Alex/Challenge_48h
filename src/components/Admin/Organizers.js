@@ -212,7 +212,7 @@ const Organizers = ({ className, staticContext, ...rest }) => {
                                     //     ),
                                     // }}
                                     />
-                                    <Button className={classes.button} href="/admin/newcustomer">
+                                    <Button className={classes.button} href="/admin/neworganizer">
                                         Create a new organisation
                                     </Button>
                                 </div>
