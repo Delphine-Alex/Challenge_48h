@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
-// import React, { useState, useEffect } from 'react';
-// import axios from 'axios';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import clsx from 'clsx';
 
 import Headers from '../Header/Header';
@@ -9,10 +8,10 @@ import {
     Card,
     Divider,
     Grid,
-    // InputAdornment,
+    InputAdornment,
     Paper,
     Table,
-    // TableBody,
+    TableBody,
     TableCell,
     TableContainer,
     TableHead,
@@ -22,13 +21,13 @@ import {
     Typography,
 } from '@material-ui/core';
 
-// import SearchIcon from '@material-ui/icons/Search';
+import SearchIcon from '@material-ui/icons/Search';
 
 import { makeStyles } from '@material-ui/core/styles';
 
 const columns = [
-    { id: 'organisation', label: 'Organisation', minWidth: 100, align: 'center' },
     { id: 'name', label: 'Name', minWidth: 100, align: 'center' },
+    { id: 'referent', label: 'Referent', minWidth: 100, align: 'center' },
     { id: 'email', label: 'Email', minWidth: 100, align: 'center' },
     { id: 'username', label: 'Username', minWidth: 100, align: 'center' },
     { id: 'view', label: '', minWidth: 100, align: 'center' },
@@ -130,23 +129,23 @@ const useStyles = makeStyles((theme) => ({
 const Organizers = ({ className, staticContext, ...rest }) => {
     const classes = useStyles();
     const [page, setPage] = useState(0);
-    // const [users, setUsers] = useState([]);
+    const [users, setUsers] = useState([]);
 
-    // const [searchTerm, setSearchTerm] = useState('');
+    const [searchTerm, setSearchTerm] = useState('');
     const [rowsPerPage, setRowsPerPage] = useState(10);
 
-    // useEffect(() => {
-    //     const getDatas = async () => {
-    //         try {
-    //             const result = await axios.get('')
-    //             setUsers(result.data);
-    //             console.log(result.data);
-    //         } catch (err) {
-    //             console.log(err)
-    //         }
-    //     };
-    //     getDatas();
-    // }, []);
+    useEffect(() => {
+        const getDatas = async () => {
+            try {
+                const result = await axios.get('http://localhost:8080/organizers')
+                setUsers(result.data);
+                console.log(result.data);
+            } catch (err) {
+                console.log(err)
+            }
+        };
+        getDatas();
+    }, []);
 
     const handleChangePage = (newPage) => {
         setPage(newPage);
@@ -163,29 +162,29 @@ const Organizers = ({ className, staticContext, ...rest }) => {
         </TableCell>
     ));
 
-    // const mainContent = users
-    //     .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-    //     .filter(
-    //         (user) =>
-    //             !searchTerm ||
-    //             user.firstname.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    //             user.lastname.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    //             user.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    //             user.username.toLowerCase().includes(searchTerm.toLowerCase())
-    //     )
-    //     .map((user) => {
-    //         return (
-    //             <TableRow hover role="checkbox" tabIndex={-1} key={user.uuid} >
-    //                 <TableCell align="center">{user.firstname}</TableCell>
-    //                 <TableCell align="center">{user.lastname}</TableCell>
-    //                 <TableCell align="center">{user.email}</TableCell>
-    //                 <TableCell align="center">{user.username}</TableCell>
-    //                 <TableCell align="center">
-    //                     <Button className={classes.button} href={``}>View</Button>
-    //                 </TableCell>
-    //             </TableRow>
-    //         );
-    //     });
+    const mainContent = users
+        .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+        .filter(
+            (user) =>
+                !searchTerm ||
+                user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                user.referent.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                user.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                user.username.toLowerCase().includes(searchTerm.toLowerCase())
+        )
+        .map((user) => {
+            return (
+                <TableRow hover role="checkbox" tabIndex={-1} key={user.uuid} >
+                    <TableCell align="center">{user.name}</TableCell>
+                    <TableCell align="center">{user.referent}</TableCell>
+                    <TableCell align="center">{user.email}</TableCell>
+                    <TableCell align="center">{user.username}</TableCell>
+                    <TableCell align="center">
+                        <Button className={classes.button} href={``}>View</Button>
+                    </TableCell>
+                </TableRow>
+            );
+        });
 
     return (
         <div className={classes.root}>
@@ -203,14 +202,14 @@ const Organizers = ({ className, staticContext, ...rest }) => {
 
                                 <div className={classes.space}>
                                     <TextField className={classes.search} id="outlined-search" label="Search" type="search"
-                                    // onChange={(event) => { setSearchTerm(event.target.value) }}
-                                    // InputProps={{
-                                    //     endAdornment: (
-                                    //         <InputAdornment position="end">
-                                    //             <SearchIcon className={classes.searchIc} />
-                                    //         </InputAdornment>
-                                    //     ),
-                                    // }}
+                                        onChange={(event) => { setSearchTerm(event.target.value) }}
+                                        InputProps={{
+                                            endAdornment: (
+                                                <InputAdornment position="end">
+                                                    <SearchIcon className={classes.searchIc} />
+                                                </InputAdornment>
+                                            ),
+                                        }}
                                     />
                                     <Button className={classes.button} href="/admin/neworganizer">
                                         Create a new organisation
@@ -226,13 +225,13 @@ const Organizers = ({ className, staticContext, ...rest }) => {
                                                 <TableHead>
                                                     <TableRow>{tableHeader}</TableRow>
                                                 </TableHead>
-                                                {/* <TableBody>{mainContent}</TableBody> */}
+                                                <TableBody>{mainContent}</TableBody>
                                             </Table>
                                         </TableContainer>
                                         <TablePagination
                                             rowsPerPageOptions={[10, 25, 100]}
                                             component="div"
-                                            // count={mainContent.length}
+                                            count={mainContent.length}
                                             rowsPerPage={rowsPerPage}
                                             page={page}
                                             onPageChange={handleChangePage}
