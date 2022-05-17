@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-import { Button, Typography } from '@material-ui/core';
+import { Button, TextField, Typography } from '@material-ui/core';
 
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -48,16 +48,42 @@ const useStyles = makeStyles((theme) => ({
     },
     joinBtn: {
         backgroundColor: 'var(--blue-color)',
+        "&:hover": {
+            backgroundColor: 'var(--hover-btn)'
+        },
         color: 'var(--white-color)',
+        marginBottom: 80,
+        height: 50,
+        padding: 20
+    },
+    search: {
+        marginRight: 30,
+        width: '18%',
+        [theme.breakpoints.down('xs')]: {
+            width: '45%',
+        },
+
+    },
+    searchBtn: {
+        backgroundColor: 'var(--blue-color)',
+        color: 'var(--white-color)',
+        padding: "0px 20px 0px 20px"
+    },
+    titleContainer: {
+        display: 'flex',
+        justifyContent: 'center',
+        marginTop: 40,
+
     }
 }));
 
 const Home = (className, staticContext) => {
+    const [searchTerm, setSearchTerm] = useState('');
     const classes = useStyles();
 
     return (
         <div>
-            <Typography className={classes.titlePage} gutterBottom variant="h4" component="h1">How Meetup works</Typography>
+            <Typography className={classes.titlePage} gutterBottom variant="h4" component="h1">How Meetup works?</Typography>
             <p className={classes.subtitlePage}>Meet new people who share your interests through online and in-person events. It’s free to create an account.</p>
 
             <div className={classes.container}>
@@ -79,7 +105,16 @@ const Home = (className, staticContext) => {
             </div>
 
             <div className={classes.btnContainer}>
-                <Button className={classes.joinBtn}>Join Meetup Here</Button>
+                <Button className={classes.joinBtn} href="/register">Join us here</Button>
+            </div>
+
+            <Typography className={classes.titlePage} gutterBottom variant="h4" component="h2">What do you want to do?</Typography>
+
+            <div className={classes.titleContainer}>
+                <TextField className={classes.search} id="outlined-basic" label="Search a meetup" variant="outlined" type="search"
+                    onChange={(event) => { setSearchTerm(event.target.value) }}
+                />
+                <Button className={classes.searchBtn}>Search</Button>
             </div>
         </div>
     );

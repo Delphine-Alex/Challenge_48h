@@ -49,7 +49,7 @@ const Headers = ({ className, ...rest }) => {
             />
             <Toolbar>
                 <Typography className={classes.title} variant="h5" component="h1">
-                    Challenge 48h - Administrator Dashboard
+                    Administrator Dashboard
                 </Typography>
 
                 <Box flexGrow={8} />
