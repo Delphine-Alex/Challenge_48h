@@ -3,6 +3,7 @@ package public
 import (
 	//"GoChallenge48/Go/models"
 	"GoChallenge48/Go/repository"
+	"GoChallenge48/Go/models"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -34,4 +35,36 @@ func isCustomerExistById(uuid string) bool {
 	} else {
 		return true
 	}
+}
+
+
+////////////////////////////
+///		POST
+///////////////////////////
+
+// PostUser handle /user for creating a new user (POST) - PUBLIC
+func PostCustomer(c *gin.Context) {
+	// Validate input
+	var input models.CreateUser
+	if err := c.ShouldBindJSON(&input); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	if len(repository.GetCustomerByEmail(input.Email)) != 0 {
+		c.JSON(http.StatusConflict, gin.H{"error": "Customer with this mail already exist"})
+		return
+	}
+
+	if len(repository.GetCustomerByUsername(input.Username)) != 0 {
+		c.JSON(http.StatusConflict, gin.H{"error": "This username is already taken by another user"})
+		return
+	}
+
+	// Create Wishlist to create a user
+	repository.PostUser(input)
+
+	//repository.PostWishlist(repository.GetCustomerByEmail(input.Email)[0].UUID_wishlist)
+
+	c.JSON(http.StatusCreated, input)
 }

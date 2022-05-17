@@ -27,8 +27,7 @@ func main() {
 		// Customers
 		publicGroup.GET("/customer", public.GetCustomers)
 		publicGroup.GET("/customer/:id", public.GetCustomerById)
-
-		//publicGroup.POST("/user", public.PostUser)
+		publicGroup.POST("/customer", public.PostCustomer)
 
 		// Organizer
 		publicGroup.GET("/organizer", public.GetOrganizer)
