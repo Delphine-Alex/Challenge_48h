@@ -139,7 +139,6 @@ const Customers = ({ className, staticContext, ...rest }) => {
             try {
                 const result = await axios.get('http://localhost:8080/customers')
                 setUsers(result.data);
-                console.log(result.data);
             } catch (err) {
                 console.log(err)
             }

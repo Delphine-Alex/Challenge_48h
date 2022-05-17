@@ -139,7 +139,6 @@ const Organizers = ({ className, staticContext, ...rest }) => {
             try {
                 const result = await axios.get('http://localhost:8080/organizers')
                 setUsers(result.data);
-                console.log(result.data);
             } catch (err) {
                 console.log(err)
             }
